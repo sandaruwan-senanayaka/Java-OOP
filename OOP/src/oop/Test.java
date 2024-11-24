@@ -7,6 +7,7 @@ package oop;
 abstract class Gun {
 
     int bullet;
+    static String bag; // This not inherit but can use due to static keyword
 
     public abstract void fire();
 }
@@ -36,7 +37,7 @@ class Snipper extends Gun {
 
 class Man {
 
-    Gun gun;
+    Gun gun; // Has-A Relationship (Assosiation -> Aggregation & Composition)
 
     void run() {
         System.out.println("Run..... 🏃‍ ️");
@@ -54,17 +55,20 @@ public class Test {
         snipper.bullet = 4;
 
         Man man = new Man();
-        man.gun = aK47;
+        man.gun = aK47; // Polymophism
         man.gun.fire();
+        man.gun.bag = "Damaged";
         System.out.println(man.gun + " bullet : " + man.gun.bullet);
 
         man.gun = null;
 
         man.run();
 
-        man.gun = snipper;
+        man.gun = snipper; // Polymophism
+        //man.gun.zoom(); this is can't due to compile time polymophism
         snipper.zoom();
         man.gun.fire();
+        System.out.println("Bag status : " + man.gun.bag);
 
     }
 }
